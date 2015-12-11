@@ -12,3 +12,6 @@ I first added functions to determine the possible moves from each location on th
 3. printPaths: prints all of the paths
 4. selectivePrint: prints paths that are at least a certain length
 5. createPath: creates paths based on the possible moves
+
+#Setup
+To use the program, clone the project onto your computer. Open a terminal window, and run the program using <code>python solver.py</code>.
