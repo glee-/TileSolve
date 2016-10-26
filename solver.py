@@ -114,5 +114,5 @@ def solve(board):
     solutions = sorted(solutions, key=len)
 
 # printPaths(createPath([[[0,0]]],b))
-solvepos(b,[0,0])
-selectivePrint(solutions, 16)
+solvepos(a,[0,0])
+selectivePrint(solutions, 0)
