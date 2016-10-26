@@ -1,5 +1,5 @@
 # TileSolve
-Solves path based tile puzzles using brute force methods.
+Solves path based tile puzzles using Kosaraju's algorithm, combined with standard graph traversal algorithms.
 The goal of the puzzle is to cross over each tile once without backtracking.
 An example of the puzzle is included, as bt1.png. This puzzle is defined in the program as the variable 'a'.
 
