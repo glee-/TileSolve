@@ -1,10 +1,12 @@
 import numpy as np
 from copy import deepcopy
+
 a = np.array([
 [1,1,1],
 [1,2,1],
 [1,1,1]
 ])
+
 b = np.array([
 [2,2,3,1],
 [1,2,2,2],
@@ -32,11 +34,12 @@ def findMoves(loc, num): #location on board, number on space
     ret.append([loc[0]-num,loc[1]+num])
     return ret
 
+def checkValidMove(move, size):
+    return move[0] > -1 and move[1] > -1 and move[0] < size and move[1] < size
+
 def possibleMoves(loc, num, size):
     moves = findMoves(loc, num)
-    return [move for move in moves if move[0] > -1 and move[1] > -1 and move[0] < size and move[1] < size]
-
-
+    return [move for move in moves if checkValidMove(move, size)]
 
 def moved(soln, pos):
     return pos in soln
@@ -46,7 +49,7 @@ def createPath(paths, board):
     ret = []
     for path in paths:
         pos = path[-1]
-        num = board[pos[0],pos[1]]
+        num = board[pos[0], pos[1]]
         moves = possibleMoves(pos, num, size)
 
         if not moves:
@@ -78,8 +81,8 @@ def pathComplete(path,board):
     ret = False
     pos = path[-1]
     size = board.shape[0]
-    num = board[pos[0],pos[1]]
-    moves = possibleMoves(pos,num,size)
+    num = board[pos[0], pos[1]]
+    moves = possibleMoves(pos, num, size)
     for move in moves:
         if move not in path:
             ret = True
@@ -88,7 +91,7 @@ def pathComplete(path,board):
 def cleanup(paths,board):
     ret = []
     for path in paths:
-        if pathComplete(path,board):
+        if pathComplete(path, board):
             solutions.append(path)
         else:
             ret.append(path)
@@ -96,11 +99,11 @@ def cleanup(paths,board):
 
 def solvepos(board, pos):
 
-    paths = createPath([[pos]],board)
-    paths = cleanup(paths,board)
+    paths = createPath([[pos]], board)
+    paths = cleanup(paths, board)
     while paths:
-        paths = createPath(paths,board)
-        paths = cleanup(paths,board)
+        paths = createPath(paths, board)
+        paths = cleanup(paths, board)
 
 def solve(board):
     global solutions
@@ -110,7 +113,7 @@ def solve(board):
         for j in range(size):
             poslist.append([i,j])
     for pos in poslist:
-        solvepos(board,pos)
+        solvepos(board, pos)
     solutions = sorted(solutions, key=len)
 
 # printPaths(createPath([[[0,0]]],b))
